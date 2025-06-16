@@ -5,6 +5,8 @@ import { Authenticated, Unauthenticated } from 'convex/react'
 import Link from 'next/link'
 import Image from 'next/image'
 import React from 'react'
+// import Theme from '@/components/theme'
+import ModeToggle from '@/components/mode-toggle'
 import { Button } from '@/components/ui/button'
 import { useStoreUser } from '@/hooks/use-store-user'
 import { BarLoader } from 'react-spinners'
@@ -17,7 +19,7 @@ const Header = () => {
   const path = usePathname();
 
   return (
-    <header className='fixed top-0 w-full border-b bg-white/95 backdrop-blur z-50 supports-[backdrop-filter]:bg-white/60'>
+    <header className="fixed top-0 z-50 w-full border-b backdrop-blur bg-white/95 supports-[backdrop-filter]:bg-white/60 dark:bg-black/90 dark:supports-[backdrop-filter]:bg-black/60">
       <nav className='container mx-auto px-4 h-16 flex items-center justify-between'>
         <Link href='/' className='flex items-center gap-2'>
           <Image
@@ -47,6 +49,8 @@ const Header = () => {
         )}
 
         <div className='flex items-center gap-4'>
+          {/* <Theme/> */}
+          <ModeToggle/>
           <Authenticated>
             <Link href={'/dashboard'}>
               <Button variant={'outline'} className={'hidden md:inline-flex items-center gap-2 hover:text-green-600 hover:border-green-600 transition'}>
