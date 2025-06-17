@@ -54,7 +54,7 @@ export default defineSchema({
       paidByUserId: v.id("users"), // reference to the users table
       receivedByUserId: v.id("users"), // reference to the users table
       groupId: v.optional(v.id("groups")), // undefined for one-on-one settlements
-      relatedExpenseId: v.optional(v.array(v.id("expenses"))), // which expenses this settlement covers
+      relatedExpenseIds: v.optional(v.array(v.id("expenses"))), // which expenses this settlement covers
       createdBy: v.id("users"), // reference to the users table
     })
       .index("by_group", ["groupId"])

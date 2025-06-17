@@ -15,7 +15,7 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6 text-center space-y-6">
           <Badge
             variant={"outline"}
-            className="bg-green-100 text-green-700 dark:bg-green-900 dark:text-white"
+            className="bg-violet-100 text-violet-600 dark:bg-violet-900 dark:text-white"
           >
             Split expenses. Simplify life.
           </Badge>
@@ -29,13 +29,13 @@ export default function Home() {
           </p>
 
           <div className="flex flex-col gap-4 sm:flex-row items-center justify-center">
-            <Button asChild size={"lg"} className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-800 dark:text-white">
+            <Button asChild size={"lg"} className="bg-violet-600 hover:bg-violet-700 dark:bg-violet-700 dark:hover:bg-violet-800 dark:text-white">
               <Link href={"/dashboard"}>
                 Get started
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
-            <Button asChild variant={"outline"} size={"lg"} className="border-green-600 text-green-600 hover:bg-green-50 dark:border-green-800 ">
+            <Button asChild variant={"outline"} size={"lg"} className="border-violet-600 text-violet-600 dark:text-violet-500 hover:bg-violet-50 dark:border-violet-600">
               <Link href={"#how-it-works"}>
                 See How It Works
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -47,7 +47,7 @@ export default function Home() {
         <div className="container mx-auto max-w-5xl overflow-hidden rounded-xl shadow-xl">
           <div className="gradient p-1 aspect-[16/9]">
             <Image
-              src={"/hero.png"}
+              src={"/images/hero.png"}
               width={1280}
               height={720}
               alt="banner"
@@ -62,7 +62,7 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6 text-center">
           <Badge
             variant={"outline"}
-            className="bg-green-100 text-green-700 dark:bg-green-900 dark:text-white"
+            className="bg-violet-100 text-violet-700 dark:bg-violet-900 dark:text-white"
           >
             Features
           </Badge>
@@ -94,7 +94,7 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6 text-center">
           <Badge
             variant={"outline"}
-            className="bg-green-100 text-green-700 dark:bg-green-900 dark:text-white"
+            className="bg-violet-100 text-violet-700 dark:bg-violet-900 dark:text-white"
           >
             How It Works
           </Badge>
@@ -110,7 +110,7 @@ export default function Home() {
           <div className="mx-auto mt-12 grid max-w-5xl gap-8 lg:grid-cols-3">
             {STEPS.map(({ description, label, title }) => (
               <div key={title} className="flex flex-col items-center space-y-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-green-100 dark:bg-green-800 text-xl font-bold text-green-600 dark:text-green-200">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-violet-100 dark:bg-violet-800 text-xl font-bold text-violet-600 dark:text-violet-200">
                   {label}
                 </div>
                 <h3 className="text-xl font-bold">{title}</h3>
@@ -125,7 +125,7 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6 text-center">
           <Badge
             variant={"outline"}
-            className="bg-green-100 text-green-700 dark:bg-green-900 dark:text-white"
+            className="bg-violet-100 text-violet-700 dark:bg-violet-900 dark:text-white"
           >
             Testimonials
           </Badge>
@@ -164,11 +164,11 @@ export default function Home() {
             Ready to simplify your expenses sharing?
           </h2>
 
-          <p className="mx-auto max-w-[600px] text-green-100 md:text-xl/relaxed">
+          <p className="mx-auto max-w-[600px] text-violet-100 md:text-xl/relaxed">
             Join thousands of users who have made splitting expenses stress-free.
           </p>
 
-          <Button asChild size={"lg"} className="bg-green-800 hover:opacity-90 dark:hover:bg-green-700 dark:text-white">
+          <Button asChild size={"lg"} className="bg-violet-800 hover:opacity-90 dark:hover:bg-violet-700 dark:text-white">
             <Link href={"/dashboard"}>
               Get started
               <ArrowRight className="ml-2 h-4 w-4" />
