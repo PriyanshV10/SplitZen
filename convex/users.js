@@ -18,7 +18,7 @@ export const store = mutation({
     const user = await ctx.db
       .query("users")
       .withIndex("by_token", (q) =>
-        q.eq("tokenIdentifier", identity.tokenIdentifier),
+        q.eq("tokenIdentifier", identity.tokenIdentifier)
       )
       .unique();
     if (user !== null) {
@@ -49,20 +49,21 @@ export const getCurrentUser = query({
       .query("users")
       .withIndex("by_token", (q) =>
         q.eq("tokenIdentifier", identity.tokenIdentifier)
-      ).first();
+      )
+      .first();
 
-    if(!user) {
+    if (!user) {
       throw new Error("User not found");
     }
 
     return user;
-  }
-})
+  },
+});
 
 export const searchUsers = query({
-  args: { query: v.string(), },
+  args: { query: v.string() },
   handler: async (ctx, args) => {
-    const currentUser = await ctx.runQuery(internal.users.getCurrentUser)
+    const currentUser = await ctx.runQuery(internal.users.getCurrentUser);
 
     // Don't search if the query is too short.
     if (args.query.length < 2) {
@@ -85,9 +86,9 @@ export const searchUsers = query({
     const users = [
       ...nameResults,
       ...emailResults.filter(
-        (email) => !nameResults.some((name) => name._id === email._id),
-      )
-    ]
+        (email) => !nameResults.some((name) => name._id === email._id)
+      ),
+    ];
 
     return users
       .filter((user) => user._id !== currentUser._id)
@@ -95,7 +96,7 @@ export const searchUsers = query({
         id: user._id,
         name: user.name,
         email: user.email,
-        imageUrl: user.imageUrl
-      }))
-  }
-})
+        imageUrl: user.imageUrl,
+      }));
+  },
+});

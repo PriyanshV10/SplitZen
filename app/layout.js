@@ -19,10 +19,8 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="icon" href="/images/logo-s.png" />
       </head>
-      <body
-        className={`${inter.className}`}
-      >
-        <ThemeProvider 
+      <body className={`${inter.className}`}>
+        <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
@@ -33,7 +31,7 @@ export default function RootLayout({ children }) {
               <Header />
               <main className="min-h-screen dark:bg-black">
                 {children}
-                <Toaster richColors/>
+                <Toaster richColors />
               </main>
             </ConvexClientProvider>
           </ClerkProvider>

@@ -34,31 +34,31 @@ export default defineSchema({
     .index("by_user_and_group", ["paidByUserId", "groupId"])
     .index("by_date", ["date"]),
 
-    groups: defineTable({
-      name: v.string(),
-      description: v.optional(v.string()),
-      createdBy: v.id("users"), // reference to the users table
-      members: v.array(
-        v.object({
-          userId: v.id("users"), // reference to the users table
-          role: v.string(), // admin or member
-          joinedAt: v.number(),
-        })
-      )
-    }),
+  groups: defineTable({
+    name: v.string(),
+    description: v.optional(v.string()),
+    createdBy: v.id("users"), // reference to the users table
+    members: v.array(
+      v.object({
+        userId: v.id("users"), // reference to the users table
+        role: v.string(), // admin or member
+        joinedAt: v.number(),
+      })
+    ),
+  }),
 
-    settlements: defineTable({
-      amount: v.number(),
-      note: v.optional(v.string()),
-      date: v.number(), // timestamp
-      paidByUserId: v.id("users"), // reference to the users table
-      receivedByUserId: v.id("users"), // reference to the users table
-      groupId: v.optional(v.id("groups")), // undefined for one-on-one settlements
-      relatedExpenseIds: v.optional(v.array(v.id("expenses"))), // which expenses this settlement covers
-      createdBy: v.id("users"), // reference to the users table
-    })
-      .index("by_group", ["groupId"])
-      .index("by_user_and_group", ["paidByUserId", "groupId"])
-      .index("by_receiver_and_group", ["receivedByUserId", "groupId"])
-      .index("by_date", ["date"]),
+  settlements: defineTable({
+    amount: v.number(),
+    note: v.optional(v.string()),
+    date: v.number(), // timestamp
+    paidByUserId: v.id("users"), // reference to the users table
+    receivedByUserId: v.id("users"), // reference to the users table
+    groupId: v.optional(v.id("groups")), // undefined for one-on-one settlements
+    relatedExpenseIds: v.optional(v.array(v.id("expenses"))), // which expenses this settlement covers
+    createdBy: v.id("users"), // reference to the users table
+  })
+    .index("by_group", ["groupId"])
+    .index("by_user_and_group", ["paidByUserId", "groupId"])
+    .index("by_receiver_and_group", ["receivedByUserId", "groupId"])
+    .index("by_date", ["date"]),
 });

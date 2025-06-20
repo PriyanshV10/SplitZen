@@ -8,7 +8,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function Home() {
-
   return (
     <div className="flex flex-col pt-20 ">
       <section className="mt-20 pb-12 space-y-10 md:space-y-20 px-5">
@@ -25,17 +24,27 @@ export default function Home() {
           </h1>
 
           <p className="mx-auto max-w-[700px] text-gray-500 dark:text-gray-400 md:text-xl/relaxed">
-            Track shared expenses, manage bills effortlessly, and settle up with ease. Never worry about who owes what.
+            Track shared expenses, manage bills effortlessly, and settle up with
+            ease. Never worry about who owes what.
           </p>
 
           <div className="flex flex-col gap-4 sm:flex-row items-center justify-center">
-            <Button asChild size={"lg"} className="bg-violet-600 hover:bg-violet-700 dark:bg-violet-700 dark:hover:bg-violet-800 dark:text-white">
+            <Button
+              asChild
+              size={"lg"}
+              className="bg-violet-600 hover:bg-violet-700 dark:bg-violet-700 dark:hover:bg-violet-800 dark:text-white"
+            >
               <Link href={"/dashboard"}>
                 Get started
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
-            <Button asChild variant={"outline"} size={"lg"} className="border-violet-600 text-violet-600 dark:text-violet-500 hover:bg-violet-50 dark:border-violet-600">
+            <Button
+              asChild
+              variant={"outline"}
+              size={"lg"}
+              className="border-violet-600 text-violet-600 dark:text-violet-500 hover:bg-violet-50 dark:border-violet-600"
+            >
               <Link href={"#how-it-works"}>
                 See How It Works
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -72,18 +81,26 @@ export default function Home() {
           </h1>
 
           <p className="mx-auto mt-3 max-w-[700px] text-gray-500 dark:text-gray-400 md:text-xl/relaxed">
-            Our Platform provides all the tools you need to handle shared expenses with ease.
+            Our Platform provides all the tools you need to handle shared
+            expenses with ease.
           </p>
 
           <div className="mx-auto mt-12 grid max-w-5xl gap-6 md:grid-cols-2 lg:grid-cols-3">
             {FEATURES.map(({ title, Icon, bg, color, description }) => (
-              <Card key={title} className={"flex flex-col items-center space-y-4 p-6 text-center"}>
+              <Card
+                key={title}
+                className={
+                  "flex flex-col items-center space-y-4 p-6 text-center"
+                }
+              >
                 <div className={`rounded-full p-2 ${bg}`}>
                   <Icon className={`h-6 w-6 ${color}`} />
                 </div>
 
                 <h3 className="text-xl font-bold">{title}</h3>
-                <p className="text-gray-500 dark:text-gray-400">{description}</p>
+                <p className="text-gray-500 dark:text-gray-400">
+                  {description}
+                </p>
               </Card>
             ))}
           </div>
@@ -104,7 +121,8 @@ export default function Home() {
           </h1>
 
           <p className="mx-auto mt-3 max-w-[700px] text-gray-500 dark:text-gray-400 md:text-xl/relaxed">
-            Follow these simple steps to start tracking and splitting expenses with ease.
+            Follow these simple steps to start tracking and splitting expenses
+            with ease.
           </p>
 
           <div className="mx-auto mt-12 grid max-w-5xl gap-8 lg:grid-cols-3">
@@ -114,7 +132,9 @@ export default function Home() {
                   {label}
                 </div>
                 <h3 className="text-xl font-bold">{title}</h3>
-                <p className="text-gray-500 dark:text-gray-400 text-center">{description}</p>
+                <p className="text-gray-500 dark:text-gray-400 text-center">
+                  {description}
+                </p>
               </div>
             ))}
           </div>
@@ -136,7 +156,7 @@ export default function Home() {
 
           <div className="mx-auto mt-12 grid max-w-5xl gap-6 md:grid-cols-2 lg:grid-cols-3">
             {TESTIMONIALS.map(({ quote, name, role, image }) => (
-              <Card key={name} >
+              <Card key={name}>
                 <CardContent className={"space-y-4 p-6"}>
                   <p className="text-gray-500 dark:text-gray-400">{quote}</p>
 
@@ -165,10 +185,15 @@ export default function Home() {
           </h2>
 
           <p className="mx-auto max-w-[600px] text-violet-100 md:text-xl/relaxed">
-            Join thousands of users who have made splitting expenses stress-free.
+            Join thousands of users who have made splitting expenses
+            stress-free.
           </p>
 
-          <Button asChild size={"lg"} className="bg-violet-800 hover:opacity-90 dark:hover:bg-violet-700 dark:text-white">
+          <Button
+            asChild
+            size={"lg"}
+            className="bg-violet-800 hover:opacity-90 dark:hover:bg-violet-700 dark:text-white mt-2"
+          >
             <Link href={"/dashboard"}>
               Get started
               <ArrowRight className="ml-2 h-4 w-4" />

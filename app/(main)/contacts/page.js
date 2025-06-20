@@ -1,48 +1,61 @@
-"use client"
+"use client";
 
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
-import { api } from '@/convex/_generated/api'
-import { useConvexQuery } from '@/hooks/use-convex-query'
-import { Plus, User, Users } from 'lucide-react'
-import Link from 'next/link'
-import React, { useState } from 'react'
-import { BarLoader, PuffLoader } from 'react-spinners'
-import CreateGroupModal from './_components/create-group-modal'
-import { useRouter } from 'next/navigation'
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { api } from "@/convex/_generated/api";
+import { UseConvexQuery } from "@/hooks/use-convex-query";
+import { Plus, User, Users } from "lucide-react";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
+import { BarLoader, PuffLoader } from "react-spinners";
+import CreateGroupModal from "./_components/create-group-modal";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const ContactsPage = () => {
-
   const [isCreateGroupModalOpen, setIsCreateGroupModalOpen] = useState(false);
-  const { data, isLoading } = useConvexQuery(api.contacts.getAllContacts);
+  const { data, isLoading } = UseConvexQuery(api.contacts.getAllContacts);
 
-  const router = useRouter
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const createGroupParam = searchParams.get("createGroup");
+
+    if (createGroupParam === "true") {
+      setIsCreateGroupModalOpen(true);
+
+      const url = new URL(window.location.href);
+      url.searchParams.delete("createGroup");
+
+      router.replace(url.pathname + url.search);
+    }
+  }, [searchParams, router]);
 
   if (isLoading) {
     return (
-      <div className='container min-h-screen mx-auto flex justify-center items-center py-12'>
-        <PuffLoader width={"100%"} color='#7C3AED' />
+      <div className="container min-h-screen mx-auto flex justify-center items-center py-12">
+        <PuffLoader width={"100%"} color="#7C3AED" />
       </div>
-    )
+    );
   }
 
   const { users, groups } = data || { users: [], groups: [] };
 
   return (
-    <div className='container mx-auto p-6'>
-      <div className='flex items-center justify-between mb-6'>
-        <h1 className='text-5xl gradient-title'>Contacts</h1>
+    <div className="container mx-auto p-6">
+      <div className="flex items-center justify-between mb-6">
+        <h1 className="text-5xl gradient-title">Contacts</h1>
         <Button onClick={() => setIsCreateGroupModalOpen(true)}>
-          <Plus className='mr-2 h-4 w-4' />
+          <Plus className="mr-2 h-4 w-4" />
           Create Group
         </Button>
       </div>
 
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <h2 className='text-xl font-bold mb-4 flex items-center'>
-            <User className='mr-2 h-5 w-5' />
+          <h2 className="text-xl font-bold mb-4 flex items-center">
+            <User className="mr-2 h-5 w-5" />
             People
           </h2>
 
@@ -53,13 +66,17 @@ const ContactsPage = () => {
               </CardContent>
             </Card>
           ) : (
-            <div className='flex flex-col gap-4'>
+            <div className="flex flex-col gap-4">
               {users.map((user) => (
                 <Link key={user.id} href={`/person/${user.id}`}>
-                  <Card className={"hover:bg-muted/30 transition-colors cursor-pointer"}>
+                  <Card
+                    className={
+                      "hover:bg-muted/30 transition-colors cursor-pointer"
+                    }
+                  >
                     <CardContent className={"py-4"}>
-                      <div className='flex items-center justify-between'>
-                        <div className='flex items-center gap-4'>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-4">
                           <Avatar>
                             <AvatarImage src={user.imageUrl} />
                             <AvatarFallback>
@@ -67,8 +84,10 @@ const ContactsPage = () => {
                             </AvatarFallback>
                           </Avatar>
                           <div>
-                            <p className='font-medium'>{user.name}</p>
-                            <p className='text-sm text-muted-foreground'>{user.email}</p>
+                            <p className="font-medium">{user.name}</p>
+                            <p className="text-sm text-muted-foreground">
+                              {user.email}
+                            </p>
                           </div>
                         </div>
                       </div>
@@ -80,8 +99,8 @@ const ContactsPage = () => {
           )}
         </div>
         <div>
-          <h2 className='text-xl font-bold mb-4 flex items-center'>
-            <Users className='mr-2 h-5 w-5' />
+          <h2 className="text-xl font-bold mb-4 flex items-center">
+            <Users className="mr-2 h-5 w-5" />
             Groups
           </h2>
 
@@ -92,19 +111,25 @@ const ContactsPage = () => {
               </CardContent>
             </Card>
           ) : (
-            <div className='flex flex-col gap-4'>
+            <div className="flex flex-col gap-4">
               {groups.map((group) => (
                 <Link key={group.id} href={`/groups/${group.id}`}>
-                  <Card className={"hover:bg-muted/30 transition-colors cursor-pointer"}>
+                  <Card
+                    className={
+                      "hover:bg-muted/30 transition-colors cursor-pointer"
+                    }
+                  >
                     <CardContent className={"py-4"}>
-                      <div className='flex items-center justify-between'>
-                        <div className='flex items-center gap-4'>
-                          <div className='bg-primary/10 p-2 rounded-md'>
-                            <Users className='h-6 w-6 text-primary'/>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-4">
+                          <div className="bg-primary/10 p-2 rounded-md">
+                            <Users className="h-6 w-6 text-primary" />
                           </div>
                           <div>
-                            <p className='font-medium'>{group.name}</p>
-                            <p className='text-sm text-muted-foreground'>{group.memberCount} members</p>
+                            <p className="font-medium">{group.name}</p>
+                            <p className="text-sm text-muted-foreground">
+                              {group.memberCount} members
+                            </p>
                           </div>
                         </div>
                       </div>
@@ -117,13 +142,13 @@ const ContactsPage = () => {
         </div>
       </div>
 
-      <CreateGroupModal 
-       isOpen={isCreateGroupModalOpen} 
-       onClose={() => setIsCreateGroupModalOpen(false)}
-       onSuccess={(groupId) => router.push(`/groups/${groupId}`)}
+      <CreateGroupModal
+        isOpen={isCreateGroupModalOpen}
+        onClose={() => setIsCreateGroupModalOpen(false)}
+        onSuccess={(groupId) => router.push(`/groups/${groupId}`)}
       />
     </div>
-  )
-}
+  );
+};
 
-export default ContactsPage
+export default ContactsPage;

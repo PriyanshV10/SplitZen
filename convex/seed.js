@@ -67,9 +67,9 @@ async function createGroups(ctx, users) {
   const now = Date.now();
 
   // Using the users from your database
-  const user1 = users[0]; 
-  const user2 = users[1]; 
-  const user3 = users[2]; 
+  const user1 = users[0];
+  const user2 = users[1];
+  const user3 = users[2];
 
   const groupDatas = [
     {
@@ -147,7 +147,7 @@ async function createOneOnOneExpenses(ctx, users) {
     {
       description: "Cab ride to airport",
       amount: 450.0,
-      category: "transportation", 
+      category: "transportation",
       date: oneWeekAgo,
       paidByUserId: user2._id,
       splitType: "equal",

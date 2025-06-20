@@ -14,7 +14,7 @@ import { z } from "zod";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { useConvexMutation, useConvexQuery } from "@/hooks/use-convex-query";
+import { useConvexMutation, UseConvexQuery } from "@/hooks/use-convex-query";
 import { api } from "@/convex/_generated/api";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -46,8 +46,8 @@ const CreateGroupModal = ({ isOpen, onClose, onSuccess }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [commandOpen, setCommandOpen] = useState(false);
 
-  const { data: currentUser } = useConvexQuery(api.users.getCurrentUser);
-  const { data: searchResults, isLoading: isSearching } = useConvexQuery(
+  const { data: currentUser } = UseConvexQuery(api.users.getCurrentUser);
+  const { data: searchResults, isLoading: isSearching } = UseConvexQuery(
     api.users.searchUsers,
     { query: searchQuery }
   );
@@ -79,23 +79,22 @@ const CreateGroupModal = ({ isOpen, onClose, onSuccess }) => {
 
   const onSubmit = async (data) => {
     try {
-        const memberIds = selectedMembers?.map((m) => m.id);
-        
-        const groupId = await createGroup.mutate({
-            name: data.name,
-            description: data.description,
-            members: memberIds
-        });
+      const memberIds = selectedMembers?.map((m) => m.id);
 
-        toast.success("Group created successfully");
-        handleClose();
+      const groupId = await createGroup.mutate({
+        name: data.name,
+        description: data.description,
+        members: memberIds,
+      });
 
-        if(onSuccess) {
-            onSuccess(groupId);
-        }
-    }
-    catch (error) {
-        toast.error("Failed to create group" + error.message);
+      toast.success("Group created successfully");
+      handleClose();
+
+      if (onSuccess) {
+        onSuccess(groupId);
+      }
+    } catch (error) {
+      toast.error("Failed to create group" + error.message);
     }
   };
 
