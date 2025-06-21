@@ -78,7 +78,7 @@ const BalanceSummary = ({ balances }) => {
                   </div>
                 </div>
 
-                <span className="font-medium text-green-600">
+                <span className="font-medium text-red-500">
                   &#8377;{item.amount.toFixed(2)}
                 </span>
               </Link>
